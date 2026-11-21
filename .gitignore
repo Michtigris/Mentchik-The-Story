@@ -12,8 +12,9 @@ tools/Godot_*.zip
 tools/Godot_*.tpz
 tools/templates.zip
 
-# Builds / exports (demo is hosted on Vercel)
+# Local export scratch (published site is tracked in web/)
 build/
+web/.vercel/
 
 # Local / editor
 *.tmp

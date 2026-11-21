@@ -7,9 +7,10 @@
 config_version=5
 
 [application]
-config/name="Les Eclats de Chartres"
+config/name="Mentchik The Story"
 run/main_scene="res://scenes/main/Main.tscn"
 config/features=PackedStringArray("4.2")
+config/icon="res://img/icon.png"
 
 [autoload]
 GameState="*res://scripts/core/GameState.gd"
