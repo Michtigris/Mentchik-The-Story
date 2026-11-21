@@ -9,8 +9,14 @@ $WebDir = Join-Path $Root "web"
 $OutHtml = Join-Path $BuildDir "index.html"
 
 New-Item -ItemType Directory -Force -Path $BuildDir | Out-Null
-& $Godot --headless --path $Root --export-release "Web" $OutHtml
-if ($LASTEXITCODE -ne 0) { throw "Godot web export failed ($LASTEXITCODE)" }
+# Godot prints warnings on stderr; don't treat them as terminating errors.
+$prevEap = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+& $Godot --headless --path $Root --export-release "Web" $OutHtml 2>&1 | Out-Host
+$exportCode = $LASTEXITCODE
+$ErrorActionPreference = $prevEap
+if ($exportCode -ne 0) { throw "Godot web export failed ($exportCode)" }
+if (-not (Test-Path $OutHtml)) { throw "Web export missing output: $OutHtml" }
 
 if (Test-Path $WebDir) { Remove-Item $WebDir -Recurse -Force }
 New-Item -ItemType Directory -Force -Path $WebDir | Out-Null
@@ -23,12 +29,26 @@ if (-not (Test-Path $Coi)) {
 	Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.min.js" -OutFile $Coi -UseBasicParsing
 }
 
+# Favicon for browsers that ignore PNG engine icon / aggressive cache
+Copy-Item (Join-Path $Root "img\icon.ico") (Join-Path $WebDir "favicon.ico") -Force
+Copy-Item (Join-Path $Root "img\favicon.png") (Join-Path $WebDir "favicon.png") -Force -ErrorAction SilentlyContinue
+
 $htmlPath = Join-Path $WebDir "index.html"
 $html = Get-Content $htmlPath -Raw
+$html = $html -replace "<title>[^<]*</title>", "<title>Mentchik The Story</title>"
 if ($html -notmatch "coi-serviceworker") {
-	$html = $html -replace "<title>[^<]*</title>", "<title>Mentchik The Story — Demo</title>`n`t`t<script src=`"coi-serviceworker.min.js`"></script>"
-	Set-Content -Path $htmlPath -Value $html -NoNewline
+	$html = $html -replace "<title>Mentchik The Story</title>", "<title>Mentchik The Story</title>`n`t`t<script src=`"coi-serviceworker.min.js`"></script>"
 }
+# Force Mentchik icons ahead of any leftover Godot defaults
+$iconBlock = @"
+<link rel="icon" href="favicon.ico?v=3" sizes="any" />
+		<link rel="icon" type="image/png" href="index.icon.png?v=3" />
+		<link rel="apple-touch-icon" href="index.apple-touch-icon.png?v=3" />
+"@
+if ($html -notmatch 'favicon\.ico\?v=') {
+	$html = $html -replace "<head>", "<head>`n`t`t$iconBlock"
+}
+Set-Content -Path $htmlPath -Value $html -NoNewline
 
 @'
 {
@@ -39,6 +59,12 @@ if ($html -notmatch "coi-serviceworker") {
         { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
         { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" },
         { "key": "Cross-Origin-Resource-Policy", "value": "same-origin" }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" }
       ]
     }
   ]
