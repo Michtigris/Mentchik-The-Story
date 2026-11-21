@@ -1,0 +1,188 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/main/Main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/EquipmentUI.tscn" id="2"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+color = Color(0.06, 0.08, 0.18, 1)
+
+[node name="SkyGlow" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 20.0
+offset_right = -80.0
+offset_bottom = -200.0
+color = Color(0.15, 0.25, 0.45, 0.12)
+
+[node name="Hub" type="Node2D" parent="."]
+
+[node name="Cathedral" type="ColorRect" parent="Hub"]
+offset_left = 780.0
+offset_top = 160.0
+offset_right = 1220.0
+offset_bottom = 640.0
+color = Color(0.12, 0.14, 0.24, 1)
+
+[node name="RoseWindow" type="Polygon2D" parent="Hub/Cathedral"]
+position = Vector2(160, 90)
+polygon = PackedVector2Array(-52, 0, -37, -37, 0, -52, 37, -37, 52, 0, 37, 37, 0, 52, -37, 37)
+color = Color(0.4, 0.7, 1, 0.55)
+
+[node name="StainedPanelBlue" type="ColorRect" parent="Hub/Cathedral"]
+offset_left = 34.0
+offset_top = 176.0
+offset_right = 86.0
+offset_bottom = 292.0
+color = Color(0.3, 0.55, 1, 0.45)
+
+[node name="StainedPanelRed" type="ColorRect" parent="Hub/Cathedral"]
+offset_left = 118.0
+offset_top = 176.0
+offset_right = 170.0
+offset_bottom = 292.0
+color = Color(1, 0.3, 0.3, 0.42)
+
+[node name="StainedPanelGold" type="ColorRect" parent="Hub/Cathedral"]
+offset_left = 202.0
+offset_top = 176.0
+offset_right = 254.0
+offset_bottom = 292.0
+color = Color(1, 0.8, 0.35, 0.45)
+
+[node name="MenuUILayer" type="CanvasLayer" parent="."]
+
+[node name="MenuUIRoot" type="Control" parent="MenuUILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="MenuPanel" type="Panel" parent="MenuUILayer/MenuUIRoot"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 56.0
+offset_right = -560.0
+offset_bottom = 0.0
+
+[node name="Margin" type="MarginContainer" parent="MenuUILayer/MenuUIRoot/MenuPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = -14.0
+offset_bottom = -12.0
+
+[node name="VBox" type="VBoxContainer" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
+theme_override_font_sizes/font_size = 32
+text = "..."
+horizontal_alignment = 1
+
+[node name="Separator1" type="ColorRect" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 2)
+color = Color(0.4, 0.55, 0.85, 0.4)
+
+[node name="SubTitle" type="Label" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+theme_override_colors/font_color = Color(0.7, 0.82, 1, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer1" type="Control" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+[node name="Progress" type="Label" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+theme_override_colors/font_color = Color(0.75, 0.88, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "..."
+
+[node name="Spacer2" type="Control" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 6)
+
+[node name="Separator2" type="ColorRect" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.35, 0.5, 0.8, 0.25)
+
+[node name="ControlsTitle" type="Label" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 0.95)
+theme_override_font_sizes/font_size = 17
+text = "CONTROLES"
+
+[node name="Controls" type="Label" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+theme_override_colors/font_color = Color(0.78, 0.85, 0.96, 0.9)
+theme_override_font_sizes/font_size = 14
+text = "..."
+autowrap_mode = 2
+
+[node name="Spacer3" type="Control" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+[node name="Separator3" type="ColorRect" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.35, 0.5, 0.8, 0.25)
+
+[node name="Footer" type="Label" parent="MenuUILayer/MenuUIRoot/MenuPanel/Margin/VBox"]
+theme_override_colors/font_color = Color(1, 0.92, 0.55, 1)
+theme_override_font_sizes/font_size = 17
+text = "..."
+horizontal_alignment = 1
+
+[node name="LevelContainer" type="Node2D" parent="."]
+
+[node name="EquipmentUI" parent="." instance=ExtResource("2")]
+
+[node name="FadeRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="TransitionTitle" type="Label" parent="FadeRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -50.0
+offset_right = 300.0
+offset_bottom = 50.0
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
+theme_override_font_sizes/font_size = 34
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+autoplay = false
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+autoplay = false
+
+[node name="UIClickSFX" type="AudioStreamPlayer" parent="."]
+autoplay = false
+
+[node name="TransitionSFX" type="AudioStreamPlayer" parent="."]
+autoplay = false

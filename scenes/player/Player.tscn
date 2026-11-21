@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/PlayerController.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/powers/PowerManager.gd" id="2"]
+[ext_resource type="Texture2D" path="res://animation/mench_wait/courir_hero_right_1.png" id="3"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(24, 42)
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 86.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="Cape" type="Polygon2D" parent="VisualRoot"]
+position = Vector2(-6, -2)
+polygon = PackedVector2Array(-6, -14, -16, -2, -8, 12, 4, 8, 2, -10)
+color = Color(0.35, 0.45, 0.9, 0.85)
+
+[node name="Body" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-9, -18, 9, -18, 11, 16, -11, 16)
+color = Color(0.78, 0.87, 1, 1)
+
+[node name="Head" type="Polygon2D" parent="VisualRoot"]
+position = Vector2(0, -24)
+polygon = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
+color = Color(0.96, 0.9, 0.78, 1)
+
+[node name="Blade" type="Polygon2D" parent="VisualRoot"]
+position = Vector2(14, -6)
+polygon = PackedVector2Array(0, -2, 18, -1, 18, 1, 0, 2, -2, 0)
+color = Color(0.88, 0.93, 1, 1)
+
+[node name="CharacterSprite" type="Sprite2D" parent="VisualRoot"]
+position = Vector2(0, -7)
+texture = ExtResource("3")
+scale = Vector2(1.8, 1.8)
+
+[node name="PowerManager" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true
+position = Vector2(300, -120)
+position_smoothing_enabled = false
+
+[node name="SFXJump" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXDash" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXAttack" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXHurt" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXLand" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXSwordThrow" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXGrenadeThrow" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXKill" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXLightning" type="AudioStreamPlayer" parent="."]

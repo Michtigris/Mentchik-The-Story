@@ -1,0 +1,33 @@
+# Cursor / IDE
+.cursor/
+
+# Godot
+.godot/
+*.translation
+
+# Local Godot binary (too large for GitHub)
+godot_bin/
+tools/Godot_*.exe
+tools/Godot_*.zip
+tools/Godot_*.tpz
+tools/templates.zip
+
+# Builds / exports (demo is hosted on Vercel)
+build/
+
+# Local / editor
+*.tmp
+*.log
+.mono/
+.import/
+export_next.ps1.bak
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Secrets / local
+.env
+.env.*
+.vercel/

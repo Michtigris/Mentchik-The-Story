@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/EquipmentUI.gd" id="1"]
+
+[node name="EquipmentUI" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.0, 0.02, 0.06, 0.8)
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -340.0
+offset_right = 320.0
+offset_bottom = 340.0
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox"]
+text = "EQUIPEMENT DES VITRAUX"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.92, 0.55, 1)
+horizontal_alignment = 1
+
+[node name="Separator" type="ColorRect" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 2)
+color = Color(0.4, 0.55, 0.85, 0.35)
+
+[node name="Hint" type="Label" parent="Panel/Margin/VBox"]
+text = "Touches 1-8 pour equiper/desequiper  |  I pour fermer"
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.6, 0.7, 0.85, 0.8)
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 6)
+
+[node name="PowerList" type="Label" parent="Panel/Margin/VBox"]
+text = "..."
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.88, 0.92, 1, 1)
+
+[node name="Spacer2" type="Control" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 4)
+
+[node name="Status" type="Label" parent="Panel/Margin/VBox"]
+text = "..."
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.65, 0.75, 0.92, 0.9)
+
+[node name="Spacer3" type="Control" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+[node name="Separator2" type="ColorRect" parent="Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.35, 0.5, 0.8, 0.25)
+
+[node name="DescriptionTitle" type="Label" parent="Panel/Margin/VBox"]
+text = "DESCRIPTIONS"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.88, 0.5, 0.9)
+
+[node name="DescriptionList" type="Label" parent="Panel/Margin/VBox"]
+text = "..."
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.82, 0.88, 1, 0.9)
+autowrap_mode = 2
+
+[node name="UIOpenSFX" type="AudioStreamPlayer" parent="."]
+autoplay = false
+
+[node name="UICloseSFX" type="AudioStreamPlayer" parent="."]
+autoplay = false
